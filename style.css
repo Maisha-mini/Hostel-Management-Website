@@ -1,0 +1,181 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+.main{
+width: 100%;
+background: linear-gradient(to top, rgba(107, 133, 133, 0.5)50%,rgba(107,133,133,0.5)50%), url(1.jpg);
+background-position: center;
+background-size: cover;
+height: 109vh;
+}   
+
+.navbar{
+width: 1200px;
+height: 75px;
+margin: auto;
+}
+
+.icon{
+width: 500px;
+float: center;
+height: 70px;
+}
+
+.logo{
+color:rgb(12, 64, 110);
+font-size: 35px;
+font-family: Ubuntu;
+padding-right: 20px;
+float: center;
+padding-top: 10px;
+}
+
+.form{
+width: 350px;
+height: 380px;
+background: linear-gradient(to top, rgba(189, 203, 207, 0.8)50%,rgba(189, 203, 207, 0.8)50%);
+position:absolute;
+bottom: 130px;
+right: -550px;
+left: 550px;
+border-radius: 10px; 
+padding: 25px;
+}
+
+.form h2{
+width: 200px;
+font-family: 'Segoe UI';
+text-align: center;
+color: rgb(12, 64, 110);
+font-size: 22px;
+background-color: aliceblue;
+border-radius: 10px;
+margin: 2px;
+padding: 8px;
+}
+
+.form input{
+width: 240px;
+height: 35px;
+background: transparent;
+border-bottom: 1px solid rgb(12, 64, 110);
+border-top: none;
+border-right: none;
+border-left: none;
+color: rgb(3, 15, 25);
+font-size: 15px;
+letter-spacing: 1px;
+margin-top: 30px;
+font-family: sans-serif;
+}
+
+.form input:focus{
+outline: none;
+}
+
+::placeholder{
+color: rgb(1, 10, 18);
+font-family: sans-serif;
+}
+
+.btnn{
+width: 240px;
+height: 40px;
+background: rgb(12, 64, 110);
+border: none;
+margin-top: 30px;
+font-size: 18px;
+border-radius: 10px;
+cursor: pointer;
+color: aliceblue;
+transition: 0.4s ease;
+}
+
+.btnn:hover{
+background: aliceblue;
+color: rgb(12, 64, 110);
+}
+
+.btnn a{
+text-decoration: none;
+color: rgb(2, 6, 24);
+font-weight: bold;
+}
+
+
+.form .link{
+font-family: sans-serif;
+font-size: 18px;
+padding-top: 20px;
+text-align: center;
+}  
+
+
+.form .link a{
+text-decoration: none;
+color: rgb(12, 64, 110);
+}
+
+.liw{
+padding-top: 15px;
+padding-bottom: 10px; 
+text-align: center; 
+}
+
+.icons{
+text-decoration: none;
+color: rgb(1, 13, 24);
+}
+
+
+
+
+
+<?php
+if(isset($_POST['login'])){
+	$user_name = $_POST['name'];
+	$user_email = $_POST['email'];
+	$password = $_POST['password'];
+	
+	// Database connection parameters
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$dbname = "hostel hub";
+
+	// Create connection
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	
+	// Check connection
+	if (!$conn) {
+    	die("Connection failed: " . mysqli_connect_error());
+	}
+	
+	$sql = "INSERT INTO users(user_name,email,password) VALUES ('$user_name', '$user_email', '$password')";
+    mysqli_query($conn, $sql);
+}
+
+// Process form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Perform your login validation here
+    // Example: Query the database to check if the login credentials are valid
+	$sql = "SELECT * FROM users WHERE user_name='$name' AND email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+	if (mysqli_num_rows($result) == 1) {
+        // Login successful, redirect or perform further actions
+        echo "Login successful";
+    } else {
+        // Login failed
+        echo "Invalid credentials";
+    }
+	
+	// Close connection
+	mysqli_close($conn);
+}
+?>

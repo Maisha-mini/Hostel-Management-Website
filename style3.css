@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('ee.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.76);
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.7); /* Add a semi-transparent white background for readability */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Set text color to be visible on the background */
+}
+
+.room {
+    display: flex;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9); /* Add a semi-transparent white background for each room */
+}
+
+.room-info {
+    flex: 1;
+}
+
+.room-image {
+    flex: 1;
+    text-align: center;
+}
+
+.room-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.room h2 {
+    margin-top: 0;
+}
+
+.room p {
+    margin-bottom: 5px;
+}
